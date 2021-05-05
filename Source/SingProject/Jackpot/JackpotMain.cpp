@@ -17,10 +17,10 @@ AJackpotMain::AJackpotMain()
 	TextAnswerX->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	TextAnswerX->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextAnswerX->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextAnswerX->SetText(FText::FromString("TextAnswerLine2"));
+	// TextAnswerX->SetText(FText::FromString("TextAnswerLine2"));
 	TextAnswerX->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextAnswerX->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextAnswerX->SetExtrude(20.f);
+	// TextAnswerX->SetExtrude(20.f);
 	TextAnswerX->SetKerning(2.f);
 	TextAnswerX->SetupAttachment(DummyRoot);
 

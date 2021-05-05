@@ -19,10 +19,10 @@ AMulChoiceItem::AMulChoiceItem()
 	TextLineChoice1->SetRelativeLocation(FVector(0.f,0.f,230.f));
 	TextLineChoice1->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextLineChoice1->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextLineChoice1->SetText(FText::FromString("TextOption1"));
+	// TextLineChoice1->SetText(FText::FromString("TextOption1"));
 	TextLineChoice1->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextLineChoice1->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextLineChoice1->SetExtrude(20.f);
+	// TextLineChoice1->SetExtrude(20.f);
 	TextLineChoice1->SetKerning(3.f);
 	TextLineChoice1->SetupAttachment(DummyRootA);
 
@@ -32,10 +32,10 @@ AMulChoiceItem::AMulChoiceItem()
 	TextLineChoice1Letter->SetRelativeLocation(FVector(0.f,0.f,230.f));
 	TextLineChoice1Letter->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextLineChoice1Letter->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextLineChoice1Letter->SetText(FText::FromString("TextLineChoice1Letter"));
+	// TextLineChoice1Letter->SetText(FText::FromString("TextLineChoice1Letter"));
 	TextLineChoice1Letter->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextLineChoice1Letter->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextLineChoice1Letter->SetExtrude(20.f);
+	// TextLineChoice1Letter->SetExtrude(20.f);
 	TextLineChoice1Letter->SetKerning(3.f);
 	TextLineChoice1Letter->SetupAttachment(DummyRootA);
 
@@ -43,10 +43,10 @@ AMulChoiceItem::AMulChoiceItem()
 	TextLineChoice1Bracket->SetRelativeLocation(FVector(0.f,0.f,230.f));
 	TextLineChoice1Bracket->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextLineChoice1Bracket->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextLineChoice1Bracket->SetText(FText::FromString("[                                                             ]"));
+	// TextLineChoice1Bracket->SetText(FText::FromString("[                                                             ]"));
 	TextLineChoice1Bracket->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextLineChoice1Bracket->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextLineChoice1Bracket->SetExtrude(20.f);
+	// TextLineChoice1Bracket->SetExtrude(20.f);
 	TextLineChoice1Bracket->SetKerning(3.f);
 	TextLineChoice1Bracket->SetupAttachment(DummyRootA);
 
@@ -54,11 +54,11 @@ AMulChoiceItem::AMulChoiceItem()
 	TextLineChoice2 = CreateDefaultSubobject<UText3DComponent>(TEXT("TextOption2"));
 	TextLineChoice2->SetRelativeLocation(FVector(300.f,0.f,230.f));
 	TextLineChoice2->SetRelativeRotation(FRotator(270.f,0.f,180.f));;//SetRelativeRotation(FRotator(90.f,0.f,0.f));
-	TextLineChoice2->SetText(FText::FromString("TextOption2"));
+	// TextLineChoice2->SetText(FText::FromString("TextOption2"));
 	TextLineChoice2->SetRelativeScale3D(FVector(5.f,5.f,5.f));
 	TextLineChoice2->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextLineChoice2->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextLineChoice2->SetExtrude(20.f);
+	// TextLineChoice2->SetExtrude(20.f);
 	TextLineChoice2->SetKerning(3.f);
 	TextLineChoice2->SetupAttachment(DummyRootB);
 
@@ -66,10 +66,10 @@ AMulChoiceItem::AMulChoiceItem()
 	TextLineChoice2Letter->SetRelativeLocation(FVector(300.f,0.f,230.f));
 	TextLineChoice2Letter->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextLineChoice2Letter->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextLineChoice2Letter->SetText(FText::FromString("TextLineChoice2Letter"));
+	// TextLineChoice2Letter->SetText(FText::FromString("TextLineChoice2Letter"));
 	TextLineChoice2Letter->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextLineChoice2Letter->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextLineChoice2Letter->SetExtrude(20.f);
+	// TextLineChoice2Letter->SetExtrude(20.f);
 	TextLineChoice2Letter->SetKerning(3.f);
 	TextLineChoice2Letter->SetupAttachment(DummyRootB);
 
@@ -78,10 +78,10 @@ AMulChoiceItem::AMulChoiceItem()
 	TextLineChoice2Bracket->SetRelativeLocation(FVector(0.f,0.f,230.f));
 	TextLineChoice2Bracket->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextLineChoice2Bracket->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextLineChoice2Bracket->SetText(FText::FromString("[                                                             ]"));
+	// TextLineChoice2Bracket->SetText(FText::FromString("[                                                             ]"));
 	TextLineChoice2Bracket->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextLineChoice2Bracket->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextLineChoice2Bracket->SetExtrude(20.f);
+	// TextLineChoice2Bracket->SetExtrude(20.f);
 	TextLineChoice2Bracket->SetKerning(3.f);
 	TextLineChoice2Bracket->SetupAttachment(DummyRootB);
 
@@ -89,10 +89,10 @@ AMulChoiceItem::AMulChoiceItem()
 	TextUnderline->SetRelativeLocation(FVector(300.f,0.f,230.f));
 	TextUnderline->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextUnderline->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextUnderline->SetText(FText::FromString("________________________"));
+	// TextUnderline->SetText(FText::FromString("________________________"));
 	TextUnderline->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextUnderline->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextUnderline->SetExtrude(20.f);
+	// TextUnderline->SetExtrude(20.f);
 	TextUnderline->SetKerning(3.f);
 	TextUnderline->SetupAttachment(DummyRoot);
 

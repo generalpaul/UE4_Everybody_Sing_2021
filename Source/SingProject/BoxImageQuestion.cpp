@@ -16,13 +16,13 @@ ABoxImageQuestion::ABoxImageQuestion()
 	TextQuestion1->SetRelativeLocation(FVector(0.f,0.f,230.f));
 	TextQuestion1->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextQuestion1->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextQuestion1->SetText(FText::FromString("Peter Piper picked a peck"));
+	//TextQuestion1->SetText(FText::FromString("Peter Piper picked a peck"));
 	
     //  TextQuestion1->SetHorizontalAlignment(EHorizTextAligment::EHTA_Center);
 	//  TextQuestion1->SetVerticalAlignment(EVerticalTextAligment::EVRTA_TextTop);
 	TextQuestion1->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
-	TextQuestion1->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextQuestion1->SetExtrude(20.f);
+    TextQuestion1->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
+//	TextQuestion1->SetExtrude(20.f);
 	//TextQuestion1->SetFreeze(false);
 	TextQuestion1->SetKerning(3.f);
 	TextQuestion1->SetupAttachment(DummyRoot);
@@ -30,11 +30,11 @@ ABoxImageQuestion::ABoxImageQuestion()
 	TextQuestion2 = CreateDefaultSubobject<UText3DComponent>(TEXT("TextQuestion2"));
 	TextQuestion2->SetRelativeLocation(FVector(300.f,0.f,230.f));
 	TextQuestion2->SetRelativeRotation(FRotator(270.f,0.f,180.f));;//SetRelativeRotation(FRotator(90.f,0.f,0.f));
-	TextQuestion2->SetText(FText::FromString("of pickled peppers Peter Piper"));
+	// TextQuestion2->SetText(FText::FromString("of pickled peppers Peter Piper"));
 	TextQuestion2->SetRelativeScale3D(FVector(5.f,5.f,5.f));
 	TextQuestion2->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextQuestion2->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextQuestion2->SetExtrude(20.f);
+	// TextQuestion2->SetExtrude(20.f);
 	TextQuestion2->SetKerning(3.f);
 
 
@@ -43,21 +43,21 @@ ABoxImageQuestion::ABoxImageQuestion()
 	TextLine1->SetRelativeLocation(FVector(0.f,0.f,230.f));
 	TextLine1->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextLine1->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextLine1->SetText(FText::FromString("Line1"));
+	// TextLine1->SetText(FText::FromString("Line1"));
 	TextLine1->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextLine1->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextLine1->SetExtrude(20.f);
+	// TextLine1->SetExtrude(20.f);
 	TextLine1->SetKerning(3.f);
 	TextLine1->SetupAttachment(DummyRoot);
 
 	TextLine2 = CreateDefaultSubobject<UText3DComponent>(TEXT("TextLine2"));
 	TextLine2->SetRelativeLocation(FVector(300.f,0.f,230.f));
 	TextLine2->SetRelativeRotation(FRotator(270.f,0.f,180.f));;//SetRelativeRotation(FRotator(90.f,0.f,0.f));
-	TextLine2->SetText(FText::FromString("Line2"));
+	// TextLine2->SetText(FText::FromString("Line2"));
 	TextLine2->SetRelativeScale3D(FVector(5.f,5.f,5.f));
 	TextLine2->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextLine2->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextLine2->SetExtrude(20.f);
+	// TextLine2->SetExtrude(20.f);
 	TextLine2->SetKerning(3.f);
 	TextLine2->SetupAttachment(DummyRoot);
 
@@ -70,21 +70,21 @@ ABoxImageQuestion::ABoxImageQuestion()
 	TextLine1Out->SetRelativeLocation(FVector(0.f,0.f,230.f));
 	TextLine1Out->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextLine1Out->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextLine1Out->SetText(FText::FromString("TextLine1Out"));
+	// TextLine1Out->SetText(FText::FromString("TextLine1Out"));
 	TextLine1Out->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextLine1Out->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextLine1Out->SetExtrude(20.f);
+	// TextLine1Out->SetExtrude(20.f);
 	TextLine1Out->SetKerning(3.f);
 	TextLine1Out->SetupAttachment(DummyRoot);
 
 	TextLine2Out = CreateDefaultSubobject<UText3DComponent>(TEXT("TextLine2Out"));
 	TextLine2Out->SetRelativeLocation(FVector(300.f,0.f,230.f));
 	TextLine2Out->SetRelativeRotation(FRotator(270.f,0.f,180.f));;//SetRelativeRotation(FRotator(90.f,0.f,0.f));
-	TextLine2Out->SetText(FText::FromString("Line2"));
+	// TextLine2Out->SetText(FText::FromString("Line2"));
 	TextLine2Out->SetRelativeScale3D(FVector(5.f,5.f,5.f));
 	TextLine2Out->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextLine2Out->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextLine2Out->SetExtrude(20.f);
+	// TextLine2Out->SetExtrude(20.f);
 	TextLine2Out->SetKerning(3.f);
 	TextLine2Out->SetupAttachment(DummyRoot);
 
@@ -151,6 +151,11 @@ void ABoxImageQuestion::PassTimelineLine(float value)
 
 		TextLine1->SetVisibility(true);
 		TextLine2->SetVisibility(true);
+
+		TextLine1->SetText(FText::FromString(FQuestion1));
+		TextLine2->SetText(FText::FromString(FQuestion2));
+
+
 		TextLine1->SetRelativeLocation(vector1);
 		TextLine2->SetRelativeLocation(vector2);
 	}
@@ -161,6 +166,10 @@ void ABoxImageQuestion::PassTimelineLine(float value)
 
 		TextLine1->SetVisibility(true);
 		TextLine2->SetVisibility(false);
+
+		TextLine2->SetText(FText::FromString(""));
+		
+
 		TextLine1->SetRelativeLocation(vector1);
 	
 	}
@@ -171,6 +180,9 @@ void ABoxImageQuestion::PassTimelineLine(float value)
 		FVector vector2 = newPosition;
 		vector2.X = 300;
 		TextLine2->SetVisibility(true);
+
+		TextLine2->SetText(FText::FromString(FQuestion2));
+
 		TextLine2->SetRelativeLocation(vector2);
 	
 	}
@@ -207,6 +219,9 @@ void ABoxImageQuestion::PassTimelineOutLine(float value)
 	{
 	    TextLine1->SetVisibility(false);
 		TextLine2->SetVisibility(false);
+
+		TextLine1->SetText(FText::FromString(""));
+		TextLine2->SetText(FText::FromString(""));
 	}
     
 
@@ -229,12 +244,13 @@ void ABoxImageQuestion::PassTimelineOutLine(float value)
 void ABoxImageQuestion::PassTimelineOut(float value)
 {
 
-	// FString f=FString::SanitizeFloat(value);
-	// GEngine->AddOnScreenDebugMessage(2, 2000.0f, FColor::Blue, f);
+	FString f=FString::SanitizeFloat(value);
+	GEngine->AddOnScreenDebugMessage(2, 2000.0f, FColor::Blue, f);
 	//FVector newPosition = OwningGrid->GetSplineLocationOut(value);
 	//SetActorLocation(newPosition);
 	TextQuestion1->SetVisibility(false);
 	TextQuestion2->SetVisibility(false);
+
 }
 
 void ABoxImageQuestion::PassRotationTimeline(float value)
@@ -254,6 +270,7 @@ void ABoxImageQuestion::SetValue(FString strQuestion1, FString strQuestion2) //F
 	TextQuestion2->SetVisibility(true);
 
 	
+	
 }
 
 void ABoxImageQuestion::SetValueLine(FString strQuestion1, FString strQuestion2) //FString strUrl, float floatSize
@@ -263,6 +280,8 @@ void ABoxImageQuestion::SetValueLine(FString strQuestion1, FString strQuestion2)
 
 	FQuestion1=strQuestion1;
 	FQuestion2=strQuestion2;
+
+
 }
 
 

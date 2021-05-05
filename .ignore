@@ -1,6 +1,7 @@
-C:/Users/PAULANTHONYVELUYA/Documents/GitHub/UE4_Everybody_Sing/.git
-C:/Users/PAULANTHONYVELUYA/Documents/GitHub/UE4_Everybody_Sing/.vscode
-C:/Users/PAULANTHONYVELUYA/Documents/GitHub/UE4_Everybody_Sing/Content
-C:/Users/PAULANTHONYVELUYA/Documents/GitHub/UE4_Everybody_Sing/DerivedDataCache
-C:/Users/PAULANTHONYVELUYA/Documents/GitHub/UE4_Everybody_Sing/Intermediate
-C:/Users/PAULANTHONYVELUYA/Documents/GitHub/UE4_Everybody_Sing/Saved
+.git
+.vs
+.vscode
+Content
+DerivedDataCache
+Intermediate
+Saved

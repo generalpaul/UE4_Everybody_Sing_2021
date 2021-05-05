@@ -16,21 +16,21 @@ AWordCloudQuestion::AWordCloudQuestion()
 	TextLine1->SetRelativeLocation(FVector(0.f,0.f,230.f));
 	TextLine1->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextLine1->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextLine1->SetText(FText::FromString("Line1"));
+	// TextLine1->SetText(FText::FromString("Line1"));
 	TextLine1->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextLine1->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextLine1->SetExtrude(20.f);
+	// TextLine1->SetExtrude(20.f);
 	TextLine1->SetKerning(3.f);
 	TextLine1->SetupAttachment(DummyRoot);
 
 	TextLine2 = CreateDefaultSubobject<UText3DComponent>(TEXT("TextLine2"));
 	TextLine2->SetRelativeLocation(FVector(300.f,0.f,230.f));
 	TextLine2->SetRelativeRotation(FRotator(270.f,0.f,180.f));;//SetRelativeRotation(FRotator(90.f,0.f,0.f));
-	TextLine2->SetText(FText::FromString("Line2"));
+	//TextLine2->SetText(FText::FromString("Line2"));
 	TextLine2->SetRelativeScale3D(FVector(5.f,5.f,5.f));
 	TextLine2->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextLine2->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextLine2->SetExtrude(20.f);
+	// TextLine2->SetExtrude(20.f);
 	TextLine2->SetKerning(3.f);
 	TextLine2->SetupAttachment(DummyRoot);
 

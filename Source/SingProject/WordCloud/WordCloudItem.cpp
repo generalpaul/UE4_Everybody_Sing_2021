@@ -21,11 +21,11 @@ AWordCloudItem::AWordCloudItem()
 
 	WWord->SetRelativeScale3D(FVector(5.f,5.f,5.f));
 
-	WWord->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
-	WWord->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	WWord->SetExtrude(20.f);
-	WWord->SetBevel(4);
-	WWord->SetText(FText::FromString("Word"));
+	// WWord->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
+	// WWord->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
+	// WWord->SetExtrude(20.f);
+	// WWord->SetBevel(4);
+	// WWord->SetText(FText::FromString("Word"));
 	WWord->SetKerning(3.f);
 	
 	WWord->SetupAttachment(DummyRoot);
@@ -39,10 +39,10 @@ AWordCloudItem::AWordCloudItem()
 	WUnderline->SetRelativeScale3D(FVector(5.f,5.f,5.f));
 	WUnderline->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	WUnderline->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	WUnderline->SetExtrude(20.f);
-	WUnderline->SetBevel(4);
+	// WUnderline->SetExtrude(20.f);
+	// WUnderline->SetBevel(4);
 	WUnderline->SetKerning(3.f);
-	WUnderline->SetText(FText::FromString("_____"));
+	//WUnderline->SetText(FText::FromString("_____"));
 
 	WUnderline->SetupAttachment(DummyRoot);
 }

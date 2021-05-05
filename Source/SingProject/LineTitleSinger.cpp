@@ -20,9 +20,9 @@ ALineTitleSinger::ALineTitleSinger()
 	LineTitle->SetRelativeScale3D(FVector(5.f, 5.f, 5.f));
 	LineTitle->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	LineTitle->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	LineTitle->SetExtrude(20.f);
+	// LineTitle->SetExtrude(20.f);
 	LineTitle->SetKerning(3.f);
-	LineTitle->SetText(FText::FromString(""));
+	// LineTitle->SetText(FText::FromString(""));
 	LineTitle->SetupAttachment(DummyRootPosition);
 
 	LineMiddle = CreateDefaultSubobject<UText3DComponent>(TEXT("LineMiddle"));
@@ -32,9 +32,9 @@ ALineTitleSinger::ALineTitleSinger()
 
 	LineMiddle->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	LineMiddle->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	LineMiddle->SetExtrude(20.f);
+	// LineMiddle->SetExtrude(20.f);
 	LineMiddle->SetKerning(3.f);
-	LineMiddle->SetText(FText::FromString(""));
+	// LineMiddle->SetText(FText::FromString(""));
 	LineMiddle->SetupAttachment(DummyRootPosition);
 
 	LineSinger = CreateDefaultSubobject<UText3DComponent>(TEXT("LineSinger"));
@@ -44,7 +44,7 @@ ALineTitleSinger::ALineTitleSinger()
 
 	LineSinger->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	LineSinger->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	LineSinger->SetExtrude(20.f);
+	// LineSinger->SetExtrude(20.f);
 	LineSinger->SetKerning(3.f);
 
 	LineSinger->SetupAttachment(DummyRootPosition);

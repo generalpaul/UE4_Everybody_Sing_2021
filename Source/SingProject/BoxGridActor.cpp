@@ -369,6 +369,9 @@ void ABoxGridActor::OnResponseReceived(FHttpRequestPtr RequestP, FHttpResponsePt
 					//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, TEXT("NONE"));
 				}
 
+				BoxQuestion->TextLine1->SetText(FText::FromString(strQuestion1));
+				BoxQuestion->TextLine2->SetText(FText::FromString(strQuestion2));
+
 				BoxQuestion->StartAnimateLine();
 			}
 			else
@@ -383,7 +386,11 @@ void ABoxGridActor::OnResponseReceived(FHttpRequestPtr RequestP, FHttpResponsePt
 			{
 				boolLine2OutIsShownLine = true;
 				BoxQuestion->FAnimateTypeLine = strEventName;
-				BoxQuestion->StartAnimateLine();
+
+				BoxQuestion->TextLine1->SetText(FText::FromString(BoxQuestion->FQuestion1));
+				BoxQuestion->TextLine2->SetText(FText::FromString(BoxQuestion->FQuestion2));
+
+    			BoxQuestion->StartAnimateLine();
 			}
 		}
 		else if (strEventName == "AnimateLineOut") //AnimateOut

@@ -24,10 +24,10 @@ AHummingMain::AHummingMain()
 	TextQuestion->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	TextQuestion->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextQuestion->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextQuestion->SetText(FText::FromString("TextQuestion"));
+	// TextQuestion->SetText(FText::FromString("TextQuestion"));
 	TextQuestion->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextQuestion->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextQuestion->SetExtrude(20.f);
+	// TextQuestion->SetExtrude(20.f);
 	TextQuestion->SetKerning(2.f);
 	TextQuestion->SetupAttachment(DummyRootRotator);
 
@@ -36,10 +36,10 @@ AHummingMain::AHummingMain()
 	TextTitle1->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	TextTitle1->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextTitle1->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextTitle1->SetText(FText::FromString("TextTitle1"));
+	// TextTitle1->SetText(FText::FromString("TextTitle1"));
 	TextTitle1->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextTitle1->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextTitle1->SetExtrude(20.f);
+	// TextTitle1->SetExtrude(20.f);
 	TextTitle1->SetKerning(2.f);
 	TextTitle1->SetupAttachment(DummyRootInfo);
 
@@ -47,10 +47,10 @@ AHummingMain::AHummingMain()
 	TextTitle2->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	TextTitle2->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextTitle2->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextTitle2->SetText(FText::FromString("TextTitle2"));
+	// TextTitle2->SetText(FText::FromString("TextTitle2"));
 	TextTitle2->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextTitle2->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextTitle2->SetExtrude(20.f);
+	// TextTitle2->SetExtrude(20.f);
 	TextTitle2->SetKerning(2.f);
 	TextTitle2->SetupAttachment(DummyRootInfo);
 
@@ -58,10 +58,10 @@ AHummingMain::AHummingMain()
 	TextAnswer->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	TextAnswer->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextAnswer->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextAnswer->SetText(FText::FromString("TextAnswer"));
+	// TextAnswer->SetText(FText::FromString("TextAnswer"));
 	TextAnswer->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextAnswer->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextAnswer->SetExtrude(20.f);
+	// TextAnswer->SetExtrude(20.f);
 	TextAnswer->SetKerning(2.f);
 	TextAnswer->SetupAttachment(DummyRootRotator);
 
@@ -70,10 +70,10 @@ AHummingMain::AHummingMain()
 	TextAnswer1->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	TextAnswer1->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextAnswer1->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextAnswer1->SetText(FText::FromString("TextAnswer1"));
+	// TextAnswer1->SetText(FText::FromString("TextAnswer1"));
 	TextAnswer1->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextAnswer1->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextAnswer1->SetExtrude(20.f);
+	// TextAnswer1->SetExtrude(20.f);
 	TextAnswer1->SetKerning(2.f);
 	TextAnswer1->SetupAttachment(DummyRootRotator);
 
@@ -81,10 +81,10 @@ AHummingMain::AHummingMain()
 	TextAnswer2->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	TextAnswer2->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextAnswer2->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextAnswer2->SetText(FText::FromString("TextAnswer2"));
+	// TextAnswer2->SetText(FText::FromString("TextAnswer2"));
 	TextAnswer2->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextAnswer2->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextAnswer2->SetExtrude(20.f);
+	// TextAnswer2->SetExtrude(20.f);
 	TextAnswer2->SetKerning(2.f);
 	TextAnswer2->SetupAttachment(DummyRootRotator);
 
@@ -93,10 +93,10 @@ AHummingMain::AHummingMain()
 	TextInfo1->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	TextInfo1->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextInfo1->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextInfo1->SetText(FText::FromString("TextInfo1"));
+	// TextInfo1->SetText(FText::FromString("TextInfo1"));
 	TextInfo1->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextInfo1->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextInfo1->SetExtrude(20.f);
+	// TextInfo1->SetExtrude(20.f);
 	TextInfo1->SetKerning(2.f);
 	TextInfo1->SetupAttachment(DummyRootInfo);
 
@@ -104,10 +104,10 @@ AHummingMain::AHummingMain()
 	TextInfo2->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	TextInfo2->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextInfo2->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextInfo2->SetText(FText::FromString("TextInfo2"));
+	// TextInfo2->SetText(FText::FromString("TextInfo2"));
 	TextInfo2->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextInfo2->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextInfo2->SetExtrude(20.f);
+	// TextInfo2->SetExtrude(20.f);
 	TextInfo2->SetKerning(2.f);
 	TextInfo2->SetupAttachment(DummyRootInfo);
 
@@ -116,10 +116,10 @@ AHummingMain::AHummingMain()
 	TextInfo3->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	TextInfo3->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextInfo3->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextInfo3->SetText(FText::FromString("TextInfo3"));
+	// TextInfo3->SetText(FText::FromString("TextInfo3"));
 	TextInfo3->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextInfo3->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextInfo3->SetExtrude(20.f);
+	// TextInfo3->SetExtrude(20.f);
 	TextInfo3->SetKerning(2.f);
 	TextInfo3->SetupAttachment(DummyRootInfo);
 
@@ -127,10 +127,10 @@ AHummingMain::AHummingMain()
 	TextInfo4->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	TextInfo4->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextInfo4->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextInfo4->SetText(FText::FromString("TextInfo4"));
+	// TextInfo4->SetText(FText::FromString("TextInfo4"));
 	TextInfo4->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextInfo4->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextInfo4->SetExtrude(20.f);
+	// TextInfo4->SetExtrude(20.f);
 	TextInfo4->SetKerning(2.f);
 	TextInfo4->SetupAttachment(DummyRootInfo);
 
@@ -138,10 +138,10 @@ AHummingMain::AHummingMain()
 	TextInfoFrame->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	TextInfoFrame->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextInfoFrame->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextInfoFrame->SetText(FText::FromString("TextInfoFrame"));
+	// TextInfoFrame->SetText(FText::FromString("TextInfoFrame"));
 	TextInfoFrame->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextInfoFrame->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextInfoFrame->SetExtrude(20.f);
+	// TextInfoFrame->SetExtrude(20.f);
 	TextInfoFrame->SetKerning(2.f);
 	TextInfoFrame->SetupAttachment(DummyRootInfo);
 
@@ -150,10 +150,10 @@ AHummingMain::AHummingMain()
 	TextInfoArtist1->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	TextInfoArtist1->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextInfoArtist1->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextInfoArtist1->SetText(FText::FromString("TextInfoArtist1"));
+	// TextInfoArtist1->SetText(FText::FromString("TextInfoArtist1"));
 	TextInfoArtist1->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextInfoArtist1->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextInfoArtist1->SetExtrude(20.f);
+	// TextInfoArtist1->SetExtrude(20.f);
 	TextInfoArtist1->SetKerning(2.f);
 	TextInfoArtist1->SetupAttachment(DummyRootInfo);
 
@@ -163,10 +163,10 @@ AHummingMain::AHummingMain()
 	TextInfoArtist2->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	TextInfoArtist2->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextInfoArtist2->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextInfoArtist2->SetText(FText::FromString("TextInfoArtist2"));
+	// TextInfoArtist2->SetText(FText::FromString("TextInfoArtist2"));
 	TextInfoArtist2->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextInfoArtist2->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextInfoArtist2->SetExtrude(20.f);
+	// TextInfoArtist2->SetExtrude(20.f);
 	TextInfoArtist2->SetKerning(2.f);
 	TextInfoArtist2->SetupAttachment(DummyRootInfo);
 

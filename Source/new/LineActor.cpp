@@ -29,7 +29,7 @@ ALineActor::ALineActor()
 	//ScoreText->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	ScoreText->SetCastShadow(true);
 	//ScoreText->SetText(FText::Format(LOCTEXT("ScoreFmt", "Score: {0}"), FText::AsNumber(0)));
-	ScoreText->SetText("WHEN SELDOM TOLD");
+	//ScoreText->SetText("WHEN SELDOM TOLD");
 	ScoreText->SetupAttachment(RootComponent);
    
     //Multiplier = 1000;

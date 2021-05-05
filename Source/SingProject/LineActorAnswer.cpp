@@ -21,7 +21,7 @@ ALineActorAnswer::ALineActorAnswer()
 	//  TextQuestion1->SetVerticalAlignment(EVerticalTextAligment::EVRTA_TextTop);
 	TextQuestion1->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextQuestion1->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextQuestion1->SetExtrude(20.f);
+	//TextQuestion1->SetExtrude(20.f);
 	//TextQuestion1->SetFreeze(false);
 	TextQuestion1->SetKerning(3.f);
 	TextQuestion1->SetupAttachment(DummyRoot);
@@ -57,7 +57,7 @@ ALineActorAnswer::ALineActorAnswer()
 
 	TextAnswer1->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextAnswer1->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextAnswer1->SetExtrude(20.f);
+	//TextAnswer1->SetExtrude(20.f);
 	TextAnswer1->SetKerning(3.f);
 	//TextAnswer1->SetActorHiddenInGame(true);
 	TextAnswer1->SetupAttachment(DummyRoot);
@@ -70,7 +70,7 @@ ALineActorAnswer::ALineActorAnswer()
 	TextAnswerH1->SetRelativeScale3D(FVector(5.f, 5.f, 5.f));
 	TextAnswerH1->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextAnswerH1->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextAnswerH1->SetExtrude(20.f);
+	// TextAnswerH1->SetExtrude(20.f);
 	TextAnswerH1->SetKerning(3.f);
 	TextAnswerH1->SetupAttachment(DummyRoot);
 
@@ -81,7 +81,7 @@ ALineActorAnswer::ALineActorAnswer()
 	TextAnswer1NoteSymbol->SetRelativeScale3D(FVector(5.f, 5.f, 5.f));
 	TextAnswer1NoteSymbol->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextAnswer1NoteSymbol->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextAnswer1NoteSymbol->SetExtrude(20.f);
+	// TextAnswer1NoteSymbol->SetExtrude(20.f);
 	TextAnswer1NoteSymbol->SetKerning(3.f);
 	TextAnswer1NoteSymbol->SetupAttachment(DummyRoot);
 
@@ -93,7 +93,7 @@ ALineActorAnswer::ALineActorAnswer()
 	TextUnderline1->SetRelativeScale3D(FVector(5.f, 5.f, 5.f));
 	TextUnderline1->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextUnderline1->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextUnderline1->SetExtrude(20.f);
+	// TextUnderline1->SetExtrude(20.f);
 	TextUnderline1->SetKerning(0.f);
 
 	// TextUnderline1->SetHorizontalAlignment(EText3DHoriontalTextAlignment::EHTA_Center);
@@ -118,11 +118,11 @@ ALineActorAnswer::ALineActorAnswer()
 	TextQuestion2 = CreateDefaultSubobject<UText3DComponent>(TEXT("TextQuestion2"));
 	TextQuestion2->SetRelativeLocation(FVector(300.f, 0.f, 230.f));
 	TextQuestion2->SetRelativeRotation(FRotator(270.f, 0.f, 180.f));
-	; //SetRelativeRotation(FRotator(90.f,0.f,0.f));
+	//SetRelativeRotation(FRotator(90.f,0.f,0.f));
 	TextQuestion2->SetRelativeScale3D(FVector(5.f, 5.f, 5.f));
 	TextQuestion2->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextQuestion2->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextQuestion2->SetExtrude(20.f);
+	// TextQuestion2->SetExtrude(20.f);
 	TextQuestion2->SetKerning(3.f);
 	// TextQuestion2->SetHorizontalAlignment(EText3DHoriontalTextAlignment::EHTA_Center);
 	// TextQuestion2->SetVerticalAlignment(EText3dVerticalTextAligment::EVRTA_TextTop);
@@ -137,7 +137,7 @@ ALineActorAnswer::ALineActorAnswer()
 	TextAnswer2->SetRelativeScale3D(FVector(5.f, 5.f, 5.f));
 	TextAnswer2->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextAnswer2->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextAnswer2->SetExtrude(20.f);
+	// TextAnswer2->SetExtrude(20.f);
 	TextAnswer2->SetKerning(1.f);
 	//TextAnswer2->SetActorHiddenInGame(true);
 	// TextAnswer2->SetHorizontalAlignment(EText3DHoriontalTextAlignment::EHTA_Center);
@@ -155,7 +155,7 @@ ALineActorAnswer::ALineActorAnswer()
 	TextAnswerH2->SetRelativeScale3D(FVector(5.f, 5.f, 5.f));
 	TextAnswerH2->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextAnswerH2->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextAnswerH2->SetExtrude(20.f);
+	// TextAnswerH2->SetExtrude(20.f);
 	TextAnswerH2->SetKerning(1.f);
 	TextAnswerH2->SetupAttachment(DummyRoot);
 
@@ -166,7 +166,7 @@ ALineActorAnswer::ALineActorAnswer()
 	TextAnswer2NoteSymbol->SetRelativeScale3D(FVector(5.f, 5.f, 5.f));
 	TextAnswer2NoteSymbol->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextAnswer2NoteSymbol->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextAnswer2NoteSymbol->SetExtrude(20.f);
+	// TextAnswer2NoteSymbol->SetExtrude(20.f);
 	TextAnswer2NoteSymbol->SetKerning(3.f);
 	TextAnswer2NoteSymbol->SetupAttachment(DummyRoot);
 
@@ -177,17 +177,17 @@ ALineActorAnswer::ALineActorAnswer()
 	TextUnderline2->SetRelativeScale3D(FVector(5.f, 5.f, 5.f));
 	TextUnderline2->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextUnderline2->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextUnderline2->SetExtrude(20.f);
+	// TextUnderline2->SetExtrude(20.f);
 	TextUnderline2->SetKerning(0.f);
 
 	TextUnderline2->SetupAttachment(DummyRoot);
 
-	TextQuestion1->SetBevel(1.f);
-	TextQuestion2->SetBevel(1.f);
-	TextUnderline1->SetBevel(1.f);
-	TextUnderline2->SetBevel(1.f);
-	TextAnswer1->SetBevel(1.f);
-	TextAnswer2->SetBevel(1.f);
+	// TextQuestion1->SetBevel(1.f);
+	// TextQuestion2->SetBevel(1.f);
+	// TextUnderline1->SetBevel(1.f);
+	// TextUnderline2->SetBevel(1.f);
+	// TextAnswer1->SetBevel(1.f);
+	// TextAnswer2->SetBevel(1.f);
 
 	// // add Cylinder to root
 	// PlaneBlur1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("PlaneBlur1"));

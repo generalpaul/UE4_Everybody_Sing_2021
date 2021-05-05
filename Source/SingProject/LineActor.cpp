@@ -22,14 +22,14 @@ ALineActor::ALineActor()
 	ScoreText->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	//ScoreText->SetRelativeLocation(FVector(-100.f,-1000.f,0.f));
 	ScoreText->SetRelativeRotation(FRotator(90.f,0.f,0.f));
-    ScoreText->SetHorizontalAlignment(EHorizTextAligment::EHTA_Center);
-	ScoreText->SetVerticalAlignment(EVerticalTextAligment::EVRTA_TextTop);
+  //  ScoreText->SetHorizontalAlignment(EHorizTextAligment::EHTA_Center);
+//	ScoreText->SetVerticalAlignment(EVerticalTextAligment::EVRTA_TextTop);
   //  ScoreText->SetRelativeScale3D(FVector(2.f,2.f,2.f));
 	ScoreText->SetWorldSize(400);
 	//ScoreText->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	ScoreText->SetCastShadow(true);
 	//ScoreText->SetText(FText::Format(LOCTEXT("ScoreFmt", "Score: {0}"), FText::AsNumber(0)));
-	ScoreText->SetText(TEXT("WHEN SELDOM TOLD"));
+//	ScoreText->SetText(TEXT("WHEN SELDOM TOLD"));
 	ScoreText->SetupAttachment(RootComponent);
    
     //Multiplier = 1000;

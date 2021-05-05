@@ -18,9 +18,9 @@ ALineSingerName::ALineSingerName()
 	TextSingerName->SetRelativeScale3D(FVector(5.f, 5.f, 5.f));
 	TextSingerName->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextSingerName->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextSingerName->SetExtrude(20.f);
-	TextSingerName->SetKerning(3.f);
-	TextSingerName->SetText(FText::FromString(""));
+	// TextSingerName->SetExtrude(20.f);
+    TextSingerName->SetKerning(3.f);
+	// TextSingerName->SetText(FText::FromString(""));
 	TextSingerName->SetupAttachment(DummyRoot);
 
 	SingerBackground = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SingerBackground"));

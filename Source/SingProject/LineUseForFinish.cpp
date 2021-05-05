@@ -16,11 +16,11 @@ ALineUseForFinish::ALineUseForFinish()
 	TextAnswer->SetRelativeRotation(FRotator(0.f, -90.f, 180.f));
 	TextAnswer->SetRelativeScale3D(FVector(5.f, 5.f, 5.f));
 
-	TextAnswer->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
-	TextAnswer->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextAnswer->SetExtrude(20.f);
-	TextAnswer->SetText(FText::FromString(""));
-	TextAnswer->SetKerning(3.f);
+	// TextAnswer->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
+	// TextAnswer->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
+	// TextAnswer->SetExtrude(20.f);
+	// TextAnswer->SetText(FText::FromString(""));
+	// TextAnswer->SetKerning(3.f);
 
 	TextAnswer->SetupAttachment(DummyRoot);
 	//RootComponent=TextAnswer;
@@ -32,9 +32,9 @@ ALineUseForFinish::ALineUseForFinish()
 	TextQuestion->SetRelativeScale3D(FVector(5.f, 5.f, 5.f));
 	TextQuestion->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextQuestion->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextQuestion->SetExtrude(20.f);
+	// TextQuestion->SetExtrude(20.f);
 	TextQuestion->SetKerning(3.f);
-	TextQuestion->SetText(FText::FromString(""));
+	// TextQuestion->SetText(FText::FromString(""));
 	//TextQuestion->AttachToComponent(RootComponent, FAttachmentTransformRules::SnapToTargetIncludingScale);
 	TextQuestion->SetupAttachment(DummyRoot);
 

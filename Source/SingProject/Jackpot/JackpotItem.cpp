@@ -29,10 +29,10 @@ AJackpotItem::AJackpotItem()
 	TextNumber->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	TextNumber->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextNumber->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextNumber->SetText(FText::FromString("TextNumber"));
+	// TextNumber->SetText(FText::FromString("TextNumber"));
 	TextNumber->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextNumber->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextNumber->SetExtrude(20.f);
+	// TextNumber->SetExtrude(20.f);
 	TextNumber->SetKerning(2.f);
 	TextNumber->SetupAttachment(DummyRootNumber);
 
@@ -40,10 +40,10 @@ AJackpotItem::AJackpotItem()
 	TextAnswerSingleLine->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	TextAnswerSingleLine->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextAnswerSingleLine->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextAnswerSingleLine->SetText(FText::FromString("TextAnswerSingleLine"));
+	// TextAnswerSingleLine->SetText(FText::FromString("TextAnswerSingleLine"));
 	TextAnswerSingleLine->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextAnswerSingleLine->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextAnswerSingleLine->SetExtrude(20.f);
+	// TextAnswerSingleLine->SetExtrude(20.f);
 	TextAnswerSingleLine->SetKerning(2.f);
 	TextAnswerSingleLine->SetupAttachment(DummyRootContent);
 
@@ -52,10 +52,10 @@ AJackpotItem::AJackpotItem()
 	TextAnswerLine1->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	TextAnswerLine1->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextAnswerLine1->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextAnswerLine1->SetText(FText::FromString("TextAnswerLine1"));
+	// TextAnswerLine1->SetText(FText::FromString("TextAnswerLine1"));
 	TextAnswerLine1->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextAnswerLine1->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextAnswerLine1->SetExtrude(20.f);
+	// TextAnswerLine1->SetExtrude(20.f);
 	TextAnswerLine1->SetKerning(2.f);
 	TextAnswerLine1->SetupAttachment(DummyRootContent);
 
@@ -65,10 +65,10 @@ AJackpotItem::AJackpotItem()
 	TextAnswerLine2->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	TextAnswerLine2->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextAnswerLine2->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextAnswerLine2->SetText(FText::FromString("TextAnswerLine2"));
+	// TextAnswerLine2->SetText(FText::FromString("TextAnswerLine2"));
 	TextAnswerLine2->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
 	TextAnswerLine2->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextAnswerLine2->SetExtrude(20.f);
+	// TextAnswerLine2->SetExtrude(20.f);
 	TextAnswerLine2->SetKerning(2.f);
 	TextAnswerLine2->SetupAttachment(DummyRootContent);
 

@@ -188,7 +188,7 @@ void ABoxImageActor::SetDuplicateImage(bool hideCurrentImage)
 		BlockMesh->SetVisibility(false);
 		PlaneRed->SetVisibility(false);
 		PlaneGreen->SetVisibility(false);
-		PlaneVideo->SetVisibility(false);
+		//PlaneVideo->SetVisibility(false);
 	}
 	DummyRootMeshOut->SetRelativeLocation(endingPositionForMovingOut);
 	BlockOutMesh->SetVisibility(true);
@@ -216,7 +216,7 @@ void ABoxImageActor::SetScaleWidth(float width)
 void ABoxImageActor::SetImageLinePosition(int IntImageLine, float FloatImageLeft)
 {
 	BlockMesh->SetVisibility(true);
-	PlaneVideo->SetVisibility(true);
+//	PlaneVideo->SetVisibility(true);
     floatImageTop = IntImageLine;
 	floatImageLeft = FloatImageLeft;
 	
@@ -268,7 +268,7 @@ void ABoxImageActor::SetURL(FString _url)
 
 void ABoxImageActor::SetURLVideo(FString _url)
 {
-	PlaneVideo->SetVisibility(true);
+	//PlaneVideo->SetVisibility(true);
 	urlVideo = _url;
 //	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, urlVideo);
 }

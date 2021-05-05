@@ -34,6 +34,8 @@ public:
 
 	int IntImageLine;
 	
+	// FString line1Text;
+	// FString line2Text;
 
 	
 	//** Text component for the score */

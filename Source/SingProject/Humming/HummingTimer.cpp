@@ -16,11 +16,11 @@ AHummingTimer::AHummingTimer()
 	TextTimer->SetRelativeLocation(FVector(0.f,0.f,0.f));
 	TextTimer->SetRelativeRotation(FRotator(270.f,0.f,180.f));
 	TextTimer->SetRelativeScale3D(FVector(5.f,5.f,5.f));
-	TextTimer->SetText(FText::FromString("TextTimer"));
-	TextTimer->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
-	TextTimer->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
-	TextTimer->SetExtrude(20.f);
-	TextTimer->SetKerning(2.f);
+	// TextTimer->SetText(FText::FromString("TextTimer"));
+	// TextTimer->SetHorizontalAlignment(EText3DHorizontalTextAlignment::Center);
+	// TextTimer->SetVerticalAlignment(EText3DVerticalTextAlignment::FirstLine);
+	// TextTimer->SetExtrude(20.f);
+	// TextTimer->SetKerning(2.f);
 	TextTimer->SetupAttachment(DummyRoot);
 
 
