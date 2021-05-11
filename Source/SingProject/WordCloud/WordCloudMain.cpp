@@ -39,6 +39,10 @@ void AWordCloudMain::BeginPlay()
 
 	WCQuestion->SetValue("", "");
 	WCQuestionOut->SetValue("", "");
+	FOnTimelineFloatOut.BindUFunction(this, FName("ControlZoomOut"));
+	ZoomTimelineOut.AddInterpFloat(ZoomCurveOut, FOnTimelineFloatOut);
+
+	return;
 
 	GetWorld()->Exec(GetWorld(), TEXT("DisableAllScreenMessages"));
 	Request = FHttpModule::Get().CreateRequest();
@@ -54,8 +58,7 @@ void AWordCloudMain::BeginPlay()
 	////not timer loop, one time only
 	GetWorldTimerManager().SetTimer(tmr, this, &AWordCloudMain::RepeatingFunction, 0.2f, true);
 
-	FOnTimelineFloatOut.BindUFunction(this, FName("ControlZoomOut"));
-	ZoomTimelineOut.AddInterpFloat(ZoomCurveOut, FOnTimelineFloatOut);
+
 }
 
 void AWordCloudMain::ControlZoomOut(float Value)

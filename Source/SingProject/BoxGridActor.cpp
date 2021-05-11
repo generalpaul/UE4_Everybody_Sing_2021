@@ -107,7 +107,13 @@ void ABoxGridActor::BeginPlay()
 {
 	Super::BeginPlay();
 
+	BoxImage->OwningGrid = this;
+	BoxQuestion->OwningGrid = this;
+
+	
 	GetWorld()->Exec(GetWorld(), TEXT("DisableAllScreenMessages"));
+	return;
+
 	Request = FHttpModule::Get().CreateRequest();
 
 	Request->OnProcessRequestComplete().BindUObject(this, &ABoxGridActor::OnResponseReceived);
@@ -122,8 +128,6 @@ void ABoxGridActor::BeginPlay()
 	GetWorldTimerManager().SetTimer(tmr, this, &ABoxGridActor::RepeatingFunction, 0.2f, true);
 	//GetWorldTimerManager().SetTimer(tmrUpDown, this, &ASingProjectBlockGrid::RepeatingFunctionUpOrDown, 0.2f, true);
 
-	BoxImage->OwningGrid = this;
-	BoxQuestion->OwningGrid = this;
 	//TitleSingerUse->OwningGrid=this;
 	//const FVector BlockLocationI = FVector(0.f, 0.f, 0.f) ;//+ GetActorLocation();
 
@@ -138,6 +142,358 @@ void ABoxGridActor::BeginPlay()
 	// NewBlockI->StartPlayRotation();
 }
 
+void ABoxGridActor::VaRestResponse(FString VaRestValue)
+{
+
+	boolHasPassed = false;
+	// if(!Response.IsValid())
+	// {
+	// 	return;	
+	// }
+	
+	//Create a pointer to hold the json serialized data
+	TSharedPtr<FJsonObject> JsonObject;
+
+	FString tmpHttp =VaRestValue;// Response->GetContentAsString();
+	if (strHttpContent == tmpHttp)
+		return;
+
+	strHttpContent = tmpHttp;
+	//Create a reader pointer to read the json data
+	TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(strHttpContent);
+
+	//float floatLineStartTop = -1500.f;
+	//Deserialize the json data given Reader and the actual object to deserialize
+	if (FJsonSerializer::Deserialize(Reader, JsonObject) && JsonObject.IsValid())
+	{
+
+		FString strEventName = JsonObject->GetStringField("eventName");
+		
+		if (strEventName == "none")
+		{
+		}
+		else if(strEventName=="ResetAll")
+		{
+			 strHttpContent="";
+
+			SingerName->TextSingerName->SetText(FText::FromString("EVERYBODY SING"));
+			 strQuestion1="";
+			 strQuestion2="";
+			 strUrl="";
+
+			 floatSize=0;
+
+			 intAnimateIndex=-1;
+			
+			 boolHasPassed=false;
+
+			 boolAnimateInStarted=false;
+			 boolOutIsShown=false;
+			 boolLine2OutIsShown=true;
+
+
+			 intAnimateIndexLine=-1;
+			 boolAnimateInStartedLine=false;
+			 boolOutIsShownLine=false;
+			 boolLine2OutIsShownLine=true;
+
+			 boolAnswerIsShown=false;
+		}
+		else if (strEventName == "pass_question" || strEventName == "AnimateIn" || strEventName == "Animate1")
+		{
+
+			TSharedPtr<FJsonObject> blank = JsonObject->GetObjectField("blank");
+			TSharedPtr<FJsonObject> Item1 = blank->GetObjectField("Item1");
+			strQuestion1 = Item1->GetStringField("question");
+
+			TSharedPtr<FJsonObject> Item2 = blank->GetObjectField("Item2");
+			strQuestion2 = Item2->GetStringField("question");
+
+			int IntImageLine =  JsonObject->GetIntegerField("IntImageLine");
+			float ImagePosition =  JsonObject->GetIntegerField("ImagePosition");
+
+			/*Name*/
+			FString strName = Item1->GetStringField("strName");
+			
+			if(strName!="")
+			{
+				SingerName->TextSingerName->SetText(FText::FromString(strName));
+				SingerName->Blink();	
+			}
+			else
+			{
+				SingerName->TextSingerName->SetText(FText::FromString("EVERYBODY SING"));
+			}
+			/*End Name*/
+			
+			if(strEventName == "pass_question")
+			{
+				// GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Green, strQuestion1);
+				// GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Green, strQuestion2);
+				BoxQuestion->SetValue(strQuestion1, strQuestion2);
+				BoxImage->SetImageLinePosition(IntImageLine, ImagePosition);
+			}
+			else if (strEventName == "AnimateIn" || strEventName == "Animate1")
+			{
+				BoxImage->SetImageLinePosition(IntImageLine, ImagePosition);
+				BoxQuestion->SetValue(strQuestion1, strQuestion2);
+				// BoxImage->MoveToInitialPosition();
+				
+				boolAnswerIsShown = false;
+
+				//FString strParam=JsonObject->GetStringField("param");
+				int index = JsonObject->GetIntegerField("index");
+				BoxQuestion->intIndex = index;
+				//FString ss = FString::FromInt(index);
+
+				if (!boolAnimateInStarted && intAnimateIndex != index)
+				{
+
+					boolAnimateInStarted = true;
+					intAnimateIndex = index;
+					// BoxImage->PositionOutObject();
+					if (boolOutIsShown)
+					{
+						boolOutIsShown = false;
+						//BoxQuestion->StartAnimateOut();
+						BoxImage->SetDuplicateImage(false);
+					}
+					else
+					{
+						boolOutIsShown = true;
+					}
+
+					
+					BoxQuestion->FAnimateTypeForImage = strEventName;	
+					//regular lines out
+					if (boolOutIsShownLine)
+					{
+						BoxQuestion->FAnimateTypeLine = strEventName;	
+						boolOutIsShownLine = false;
+						BoxQuestion->StartAnimateOutLine();
+						boolAnimateInStartedLine = false;
+					}
+
+					BoxQuestion->IntImageLine = IntImageLine;
+					strUrl = JsonObject->GetStringField("param");
+					floatSize = JsonObject->GetIntegerField("param2");
+					strUrlVideo = JsonObject->GetStringField("param3");
+
+					BoxQuestion->StartAnimate();
+					BoxImage->SetScaleWidth(floatSize);
+					BoxImage->SetURL(strUrl);
+					BoxImage->SetURLVideo(strUrlVideo);
+					BoxImage->StartDownload();
+					// BoxImage->StartDownloadOut();
+					BoxImage->StartPlay();
+					BoxImage->StartPlayRotation();
+				}
+			}
+		}
+		else if (strEventName == "Animate2")
+		{
+			BoxQuestion->FAnimateTypeForImage = strEventName;
+			BoxQuestion->StartAnimate();
+		}
+		else if (strEventName == "StartRotateImage")
+		{
+			BoxImage->StartRotateImage();
+		}
+		else if (strEventName == "AnimateLineIn" || strEventName == "AnimateLine1")
+		{
+
+			TSharedPtr<FJsonObject> blank = JsonObject->GetObjectField("blank");
+			TSharedPtr<FJsonObject> Item1 = blank->GetObjectField("Item1");
+			strQuestion1 = Item1->GetStringField("question");
+
+			TSharedPtr<FJsonObject> Item2 = blank->GetObjectField("Item2");
+			strQuestion2 = Item2->GetStringField("question");
+
+			// GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Blue, strQuestion1);
+			BoxQuestion->SetValueLine(strQuestion1, strQuestion2);
+
+			int index = JsonObject->GetIntegerField("index");
+			BoxQuestion->intIndex = index;
+			
+			/*Name*/
+				FString strName = Item1->GetStringField("strName");
+				
+				if(strName!="")
+				{
+					SingerName->TextSingerName->SetText(FText::FromString(strName));
+					SingerName->Blink();	
+				}
+				else
+				{
+					SingerName->TextSingerName->SetText(FText::FromString("EVERYBODY SING"));
+				}
+			/*End Name*/
+
+			if (!boolAnimateInStartedLine && intAnimateIndexLine != index)
+			{
+
+				boolAnimateInStartedLine = true;
+				intAnimateIndexLine = index;
+
+				if (boolOutIsShownLine)
+				{
+					boolOutIsShownLine = false;
+					BoxQuestion->StartAnimateOutLine();
+					boolAnimateInStartedLine = false;
+				}
+				else
+				{
+					boolOutIsShownLine = true;
+				}
+
+				if (boolOutIsShown)
+				{
+					boolOutIsShown = false;
+					BoxQuestion->SetValue("", "");
+					//BoxQuestion->StartAnimateOut();
+					BoxImage->SetDuplicateImage(true);
+				}
+
+				BoxQuestion->FAnimateTypeLine = "";
+
+				if (strEventName == "AnimateLine1")
+				{
+					//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, TEXT("AnimateLine1"));
+					BoxQuestion->FAnimateTypeLine = strEventName;
+					boolLine2OutIsShownLine = false;
+				}
+				else
+				{
+					//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, TEXT("NONE"));
+				}
+
+				BoxQuestion->TextLine1->SetText(FText::FromString(strQuestion1));
+				BoxQuestion->TextLine2->SetText(FText::FromString(strQuestion2));
+
+				BoxQuestion->StartAnimateLine();
+			}
+			else
+			{
+				// if(boolAnimateInStartedLine)
+				// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Yellow, TEXT("NO"));
+			}
+		}
+		else if (strEventName == "AnimateLine2")
+		{
+			if (!boolLine2OutIsShownLine)
+			{
+				boolLine2OutIsShownLine = true;
+				BoxQuestion->FAnimateTypeLine = strEventName;
+
+				BoxQuestion->TextLine1->SetText(FText::FromString(BoxQuestion->FQuestion1));
+				BoxQuestion->TextLine2->SetText(FText::FromString(BoxQuestion->FQuestion2));
+
+    			BoxQuestion->StartAnimateLine();
+			}
+		}
+		else if (strEventName == "AnimateLineOut") //AnimateOut
+		{
+
+			if (boolOutIsShownLine)
+			{
+				boolOutIsShownLine = false;
+				//GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Green, TEXT("TRUE2"));
+
+				BoxQuestion->FAnimateTypeLine = "AnimateLineOut";
+
+				BoxQuestion->SetValueLineOut();
+				BoxQuestion->StartAnimateOutLine();
+
+				boolAnimateInStartedLine = false;
+			}
+			else
+			{
+				//GEngine->AddOnScreenDebugMessage(2, 2000.0f, FColor::Green, TEXT("FALSE"));
+			}
+			if (boolOutIsShown)
+			{
+				boolOutIsShown = false;
+				//boolAnimateOutStarted=true;
+				BoxQuestion->StartAnimateOut();
+				//BoxImage->StartPlayOut();
+				BoxImage->SetDuplicateImage(true);
+				boolAnimateInStarted = false;
+			}
+			
+		}
+		else if (strEventName == "ShowAnswer")
+		{
+			if (!boolAnswerIsShown)
+			{
+				boolAnswerIsShown = true;
+				BoxImage->ShowImageAnswer();
+				FString trigger = JsonObject->GetStringField("trigger");
+				//GEngine->AddOnScreenDebugMessage(2, 2000.0f, FColor::Green, trigger);
+
+				BoxImage->SetAnswer(trigger == "true");
+				
+				FString strName = JsonObject->GetStringField("strName");
+					
+				if(strName!="")
+				{
+					SingerName->TextSingerName->SetText(FText::FromString(strName));
+					SingerName->Blink();	
+				}
+				else
+				{
+					SingerName->TextSingerName->SetText(FText::FromString("EVERYBODY SING"));
+				}
+			}
+		}
+		else if (strEventName == "AnimateOut")
+		{
+			if (boolOutIsShown)
+			{
+				boolOutIsShown = false;
+				//boolAnimateOutStarted=true;
+				BoxQuestion->StartAnimateOut();
+				//BoxImage->StartPlayOut();
+				BoxImage->SetDuplicateImage(true);
+				boolAnimateInStarted = false;
+			}
+		}
+		else if (strEventName == "ImageActor")
+		{
+			UGameplayStatics::OpenLevel(this, "PuzzleExampleMapLevel2", false);
+		}
+		else if (strEventName == "BlankActor")
+		{
+			UGameplayStatics::OpenLevel(this, "PuzzleExampleMap");
+		}
+		else if (strEventName == "WordCloud")
+		{
+			UGameplayStatics::OpenLevel(this, "WordCloudMap");
+		}
+		else if (strEventName == "MultipleChoice")
+		{
+			UGameplayStatics::OpenLevel(this, "MultipleChoiceMap");
+		}
+		else if (strEventName == "ShowTitle")
+		{
+			FString title = JsonObject->GetStringField("song");
+			FString artist = JsonObject->GetStringField("artist");
+
+			TitleSingerUse->SetLyricsTitle(title, artist);
+		}
+		else if (strEventName == "HideTitle")
+		{
+			TitleSingerUse->HideTitle();
+		}
+		else if (strEventName == "Jackpot")
+		{
+			UGameplayStatics::OpenLevel(this, "JackpotMap");
+		}
+		else if (strEventName == "Humming")
+		{
+			UGameplayStatics::OpenLevel(this, "HummingMap");
+		}
+	}
+}
 // Called every frame
 void ABoxGridActor::Tick(float DeltaTime)
 {

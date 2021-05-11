@@ -30,6 +30,9 @@ public:
 	// Sets default values for this actor's properties
 	AJackpotMain();
 
+	UFUNCTION(BlueprintCallable, Category = VaRestResponse)
+	void VaRestResponse(FString VaRestValue);
+	
 	// void RepeatingFunction();
 	// void OnRequestResponseReceived(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bWasSuccessful);
 	

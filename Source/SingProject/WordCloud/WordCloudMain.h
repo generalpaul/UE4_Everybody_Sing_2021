@@ -27,7 +27,7 @@ public:
 
 	UPROPERTY(Category = Block, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class USceneComponent* DummyRoot;
-
+	
 	//** Text component for the score */
 	// UPROPERTY(Category = Grid , EditAnywhere)
 	// TSubclassOf<class AWordCloudItem> objSpawnClass;

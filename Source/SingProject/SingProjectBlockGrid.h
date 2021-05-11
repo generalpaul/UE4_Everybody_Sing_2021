@@ -82,6 +82,7 @@ public:
 	
 	FHttpModule* Http;
 	void OnResponseReceived(FHttpRequestPtr RequestP, FHttpResponsePtr Response, bool bWasSuccessful);
+
 	
 	// void OnResponseReceived2(FHttpRequestPtr RequestD, FHttpResponsePtr Response, bool bWasSuccessful);
 
@@ -139,6 +140,10 @@ public:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UText3DComponent* TextQuestionB;
 
+
+
+	UFUNCTION(BlueprintCallable, Category = VaRestResponse)
+	void VaRestResponse(FString VaRestValue);
 
 	
 	UPROPERTY()

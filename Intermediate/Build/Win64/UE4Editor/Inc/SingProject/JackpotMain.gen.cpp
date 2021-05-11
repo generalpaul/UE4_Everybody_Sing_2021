@@ -37,6 +37,14 @@ void EmptyLinkFunctionForGeneratedCodeJackpotMain() {}
 		P_THIS->IntroFinishMain(Z_Param_intIndexPass);
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(AJackpotMain::execVaRestResponse)
+	{
+		P_GET_PROPERTY(FStrProperty,Z_Param_VaRestValue);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->VaRestResponse(Z_Param_VaRestValue);
+		P_NATIVE_END;
+	}
 	static FName NAME_AJackpotMain_StartWrongMain = FName(TEXT("StartWrongMain"));
 	void AJackpotMain::StartWrongMain()
 	{
@@ -48,6 +56,7 @@ void EmptyLinkFunctionForGeneratedCodeJackpotMain() {}
 		static const FNameNativePtrPair Funcs[] = {
 			{ "IntroFinishMain", &AJackpotMain::execIntroFinishMain },
 			{ "PassValue", &AJackpotMain::execPassValue },
+			{ "VaRestResponse", &AJackpotMain::execVaRestResponse },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 	}
@@ -146,6 +155,39 @@ void EmptyLinkFunctionForGeneratedCodeJackpotMain() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_AJackpotMain_VaRestResponse_Statics
+	{
+		struct JackpotMain_eventVaRestResponse_Parms
+		{
+			FString VaRestValue;
+		};
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_VaRestValue;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UFunction_AJackpotMain_VaRestResponse_Statics::NewProp_VaRestValue = { "VaRestValue", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(JackpotMain_eventVaRestResponse_Parms, VaRestValue), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AJackpotMain_VaRestResponse_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AJackpotMain_VaRestResponse_Statics::NewProp_VaRestValue,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AJackpotMain_VaRestResponse_Statics::Function_MetaDataParams[] = {
+		{ "Category", "VaRestResponse" },
+		{ "ModuleRelativePath", "Jackpot/JackpotMain.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AJackpotMain_VaRestResponse_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AJackpotMain, nullptr, "VaRestResponse", nullptr, nullptr, sizeof(JackpotMain_eventVaRestResponse_Parms), Z_Construct_UFunction_AJackpotMain_VaRestResponse_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AJackpotMain_VaRestResponse_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AJackpotMain_VaRestResponse_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AJackpotMain_VaRestResponse_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AJackpotMain_VaRestResponse()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AJackpotMain_VaRestResponse_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	UClass* Z_Construct_UClass_AJackpotMain_NoRegister()
 	{
 		return AJackpotMain::StaticClass();
@@ -221,6 +263,7 @@ void EmptyLinkFunctionForGeneratedCodeJackpotMain() {}
 		{ &Z_Construct_UFunction_AJackpotMain_IntroFinishMain, "IntroFinishMain" }, // 2955672029
 		{ &Z_Construct_UFunction_AJackpotMain_PassValue, "PassValue" }, // 1879101064
 		{ &Z_Construct_UFunction_AJackpotMain_StartWrongMain, "StartWrongMain" }, // 2668580612
+		{ &Z_Construct_UFunction_AJackpotMain_VaRestResponse, "VaRestResponse" }, // 3200456412
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AJackpotMain_Statics::Class_MetaDataParams[] = {
@@ -367,7 +410,7 @@ void EmptyLinkFunctionForGeneratedCodeJackpotMain() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AJackpotMain, 680197755);
+	IMPLEMENT_CLASS(AJackpotMain, 2444007484);
 	template<> SINGPROJECT_API UClass* StaticClass<AJackpotMain>()
 	{
 		return AJackpotMain::StaticClass();

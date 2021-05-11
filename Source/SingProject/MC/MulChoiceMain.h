@@ -29,6 +29,9 @@ public:
 	void OnResponseReceived(FHttpRequestPtr RequestP, FHttpResponsePtr Response, bool bWasSuccessful);
 
 
+	UFUNCTION(BlueprintCallable, Category = VaRestResponse)
+	void VaRestResponse(FString VaRestValue);
+	
 	bool hasConnection=true;
 	FHttpRequestPtr Request; //TSharedRef<IHttpRequest>
 	FTimerHandle tmr;

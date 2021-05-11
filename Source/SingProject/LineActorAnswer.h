@@ -41,6 +41,8 @@ public:
 
 	FString FAnimateType;
 
+
+
 	//** Text component for the score */
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UText3DComponent *TextQuestion1;
@@ -84,8 +86,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UText3DComponent *TextAnswer2NoteSymbol;
-
-
 
 	UFUNCTION(BlueprintImplementableEvent, Category = StartAnimate)
 	void StartAnimate();

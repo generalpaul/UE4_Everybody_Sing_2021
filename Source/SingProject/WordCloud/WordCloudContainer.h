@@ -34,8 +34,6 @@ public:
 	TArray<bool> arrIsDisabled;
 	TArray<bool> arrIsHidden;
 
-
-
 	UPROPERTY(Category = Grid, EditAnywhere)
 	class AWordCloudItem* i1;	
 

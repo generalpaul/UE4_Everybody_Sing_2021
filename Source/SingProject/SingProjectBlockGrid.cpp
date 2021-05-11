@@ -186,7 +186,13 @@ void ASingProjectBlockGrid::BeginPlay()
 	// 	//ff+=250.0f;
 
 	// }
+
 	
+	ALineActorAnswerIn->OwningGrid = this;
+	ALineActorAnswerOut->OwningGrid = this;
+
+
+return;
 	Request = FHttpModule::Get().CreateRequest();
 
 	Request->OnProcessRequestComplete().BindUObject(this, &ASingProjectBlockGrid::OnResponseReceived);
@@ -201,8 +207,6 @@ void ASingProjectBlockGrid::BeginPlay()
 	GetWorldTimerManager().SetTimer(tmr, this, &ASingProjectBlockGrid::RepeatingFunction, 0.4f, true);
 	//GetWorldTimerManager().SetTimer(tmrUpDown, this, &ASingProjectBlockGrid::RepeatingFunctionUpOrDown, 0.2f, true);
 
-	ALineActorAnswerIn->OwningGrid = this;
-	ALineActorAnswerOut->OwningGrid = this;
 	//TitleSingerUse->OwningGrid=this;
 
 	// FindAllActors(GetWorld(), arrLineActorBlanks);
@@ -210,10 +214,616 @@ void ASingProjectBlockGrid::BeginPlay()
 	// arrLineActorBlanks[0]->StartAnimate();
 }
 
-// void ASingProjectBlockGrid::OnResponseReceived2(FHttpRequestPtr RequestD, FHttpResponsePtr Response, bool bWasSuccessful)
+// void ASingProjectBlockGrid::OnResponseReceived(FHttpRequestPtr RequestD, FHttpResponsePtr Response, bool bWasSuccessful)
 // {
 // 	GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Green, TEXT("PASSED3"));
 // }
+
+void ASingProjectBlockGrid::VaRestResponse(FString VaRestValue)
+{
+
+	// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, VaRestValue);
+
+
+	//Create a pointer to hold the json serialized data
+	TSharedPtr<FJsonObject> JsonObject;
+
+	FString tmpHttp = VaRestValue;
+	if (strHttpContent == tmpHttp)
+	{
+		boolHasPassed = false;
+		return;
+	}
+		
+
+	
+	strHttpContent = tmpHttp;
+	// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::White, strHttpContent);
+	//Create a reader pointer to read the json data
+	TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(strHttpContent);
+	
+	//FString ff1= Response->GetContentAsString();
+	//FString ff21= ff1.Mid(250,100);
+	//GEngine->AddOnScreenDebugMessage(1, 2000.0f, FColor::Green, *ff21);
+	//return;
+
+	//float floatLineStartTop = -1500.f;
+	//Deserialize the json data given Reader and the actual object to deserialize
+	if (FJsonSerializer::Deserialize(Reader, JsonObject) && JsonObject.IsValid())
+	{
+
+		FString strEventName = JsonObject->GetStringField("eventName");
+		
+	    //GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, strEventName);
+		// boolHasPassed = false;
+		// return;
+		//if(strEventNameCurrent==strEventName) return;
+
+		//	strEventNameCurrent=strEventName;
+		if (strEventName == "none")
+		{
+			//strEventNameCurrent="none";
+		}
+		else if(strEventName=="ResetAll")
+		{
+			ALineActorAnswerIn->ResetAll();
+			ALineActorAnswerOut->ResetAll();
+			
+			SingerName->TextSingerName->SetText(FText::FromString("EVERYBODY SING"));
+		
+
+			boolAnimateInStarted=false;
+
+			boolOutIsShown=true;
+			boolLine2OutIsShown=true;
+			boolAnswerIsShown=false;
+
+			strQuestion1="";
+			strQuestion2="";
+			strAnswer1="";
+			strAnswer2="";
+
+			strAnswerH1="";
+			strAnswerH2="";
+
+			strUnderline1="";
+			strUnderline2="";
+
+			strHttpContent="";
+
+			// blurleft1=0;
+			// blurwidth1=0;
+			answerPosition1=0;
+			blankPosition1=0;
+
+			// blurleft2=0;
+			// blurwidth2=0;
+			answerPosition2=0;
+			blankPosition2=0;
+
+			notes=0;
+			gameType="";
+		}
+		else if (strEventName == "pass_question" || strEventName == "AnimateIn" || strEventName == "AnimateLine1")
+		{
+
+			notes = JsonObject->GetIntegerField("notes");
+			
+			int hideAnswer = JsonObject->GetIntegerField("hideAnswer");
+			int gametypeInt = JsonObject->GetIntegerField("gametype");
+
+
+			TSharedPtr<FJsonObject> blank = JsonObject->GetObjectField("blank");
+			TSharedPtr<FJsonObject> Item1 = blank->GetObjectField("Item1");
+			TSharedPtr<FJsonObject> Item2 = blank->GetObjectField("Item2");
+
+			FString strAnswer1tmp = Item1->GetStringField("answer");
+			FString strAnswer2tmp = Item2->GetStringField("answer");
+
+			//if(strAnswer1==strAnswer1tmp && strAnswer2==strAnswer2tmp) return;
+
+				strQuestion1 = Item1->GetStringField("question");
+			strAnswer1 = Item1->GetStringField("answer");
+			strAnswerH1 = Item1->GetStringField("answerH");
+			strUnderline1 = Item1->GetStringField("blank");
+			// blurleft1 = Item1->GetNumberField("blurleft");
+			// blurwidth1 = Item1->GetNumberField("blurwidth");
+			answerPosition1 = Item1->GetNumberField("answerPosition");
+			blankPosition1 = Item1->GetNumberField("blankPosition");
+
+			strQuestion2 = Item2->GetStringField("question");
+			strAnswer2 = Item2->GetStringField("answer");
+			strAnswerH2 = Item2->GetStringField("answerH");
+			strUnderline2 = Item2->GetStringField("blank");
+			// blurleft2 = Item2->GetNumberField("blurleft");
+			// blurwidth2 = Item2->GetNumberField("blurwidth");
+
+			answerPosition2 = Item2->GetNumberField("answerPosition");
+			blankPosition2 = Item2->GetNumberField("blankPosition");
+
+			
+
+
+			//  FString f1=FString::FromInt(answerPosition1);
+			//  GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Yellow, f1);
+
+			//  FString f2=FString::FromInt(answerPosition2);
+			//  GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Yellow, f2);
+
+			//  FString f3=FString::FromInt(blankPosition1);
+			//  GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Yellow, f3);
+
+			//  FString f4=FString::FromInt(blankPosition2);
+			//  GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Yellow, f4);
+
+
+			// FString f5=FString::FromInt(hideAnswer);
+			// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, f5);
+
+			// FString f6=FString::FromInt(gametypeInt);
+			// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, f6);
+
+			// FString f7=FString::FromInt(gametypeInt);
+			// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, f7);
+
+			// strQuestion1 = Item1->GetStringField("question");
+			// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, strQuestion1);
+
+			 //strAnswer1 = Item1->GetStringField("answer");
+
+			// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, strAnswer1);
+			 //strAnswerH1 = Item1->GetStringField("answerH");
+
+			// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, strAnswerH1);
+			 //strUnderline1 = Item1->GetStringField("blank");
+
+			// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, strUnderline1);
+
+			if (hideAnswer == 1)
+			{
+				gameType = "hideAnswer";
+			}
+			else if (gametypeInt == 1)
+			{
+				gameType = "reversing";
+			}
+			else if (gametypeInt == 1)
+			{
+				gameType = "englishing";
+			}
+
+			ALineActorAnswerIn->boolAsTesting=true;
+
+			if (notes == 1)
+			{
+				ALineActorAnswerIn->Init(BaseMaterial, GreenMaterial, YellowMaterial, OrangeMaterial, BlankMaterial, RedMaterial,
+										 BlurGlowMaterial, BaseBlurMaterial, notes, gameType);
+			}
+
+			ALineActorAnswerIn->SetValue(strQuestion1, strAnswer1, strAnswerH1,
+										 strUnderline1, strQuestion2, strAnswer2, strAnswerH2,
+										 strUnderline2,
+										 answerPosition1, blankPosition1,
+										 answerPosition2, blankPosition2,
+										//  blurleft1, blurleft2, blurwidth1, blurwidth2, 
+										 notes, InitFontMaterial,
+										 BaseMaterial, BaseMaterialGlow, YellowMaterial, OrangeMaterial,
+										 BlueMaterial, BlueBevelMaterial, BlueExtrudeMaterial,
+										 ESMaterial, ESBevelMaterial, ESExtrudeMaterial, 
+										 gameType, strEventName);
+
+			if (strEventName == "AnimateIn" || strEventName == "AnimateLine1")
+			{
+				boolAnswerIsShown = false;
+				
+				int index = JsonObject->GetIntegerField("index");
+				ALineActorAnswerIn->intIndex = index;
+				FString ss = FString::FromInt(index);
+
+ 				FString strName = Item1->GetStringField("strName");
+ 							 	FString f8=FString::FromInt(index);
+ 		
+				if(strName!="")
+				{
+					SingerName->TextSingerName->SetText(FText::FromString(strName));
+					SingerName->Blink();	
+				}
+				else
+				{
+					SingerName->TextSingerName->SetText(FText::FromString("EVERYBODY SING"));
+				}
+				
+				//SingerName->SetName(strName);
+				if (!boolAnimateInStarted && intAnimateIndex != index)
+				{
+
+					boolAnimateInStarted = true;
+					intAnimateIndex = index;
+
+					if (boolOutIsShown)
+					{
+						boolOutIsShown = false;
+						ALineActorAnswerOut->StartAnimateOut();
+					}
+					else
+					{
+						boolOutIsShown = true;
+					}
+
+					ALineActorAnswerIn->FAnimateType = "";
+
+					if (strEventName == "AnimateLine1")
+					{
+						ALineActorAnswerIn->FAnimateType = strEventName;
+						boolLine2OutIsShown = false;
+					}
+
+					ALineActorAnswerIn->UpdateVisibility(notes);
+					ALineActorAnswerIn->StartAnimate();
+					//	boolAnimateOutStarted=false;
+				}
+
+				//tmpLine->SetVerticalTop(floatLineStart);
+				//ALineActorAnswerIn->hide();
+
+				//haha->Destroy();
+			}
+		}
+		else if (strEventName == "AnimateShowWord")
+		{
+			ALineActorAnswerIn->ShowWord();
+		}
+		else if (strEventName == "AnimateLine2")
+		{
+			if (!boolLine2OutIsShown)
+			{
+				boolLine2OutIsShown = true;
+				ALineActorAnswerIn->FAnimateType = strEventName;
+				ALineActorAnswerIn->UpdateVisibility(notes);
+				ALineActorAnswerIn->StartAnimate();
+			}
+		}
+		else if (strEventName == "AnimateOut")
+		{
+			if (boolOutIsShown)
+			{
+				boolOutIsShown = false;
+				//boolAnimateOutStarted=true;
+				ALineActorAnswerIn->StartAnimateOut();
+				boolAnimateInStarted = false;
+			}
+		}
+		else if (strEventName == "ShowAnswer")
+		{
+
+			//GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::Yellow, TEXT("ShowAnswer"));
+			if (!boolAnswerIsShown)
+			{
+				boolAnswerIsShown = true;
+				FString trigger = JsonObject->GetStringField("trigger");
+
+				if (trigger == "true")
+				{
+					ALineActorAnswerIn->right(GreenMaterial, YellowMaterial, OrangeMaterial, BlankMaterial, GreenMaterialGlow);
+					ALineActorAnswerOut->right(GreenMaterial, YellowMaterial, OrangeMaterial, BlankMaterial, GreenMaterialGlow);
+				}
+				else
+				{
+					ALineActorAnswerIn->wrong(RedMaterial, YellowMaterial, OrangeMaterial, BlankMaterial, RedMaterialGlow);
+					ALineActorAnswerOut->wrong(RedMaterial, YellowMaterial, OrangeMaterial, BlankMaterial, RedMaterialGlow);
+				}
+
+				
+				FString strName = JsonObject->GetStringField("strName");
+					
+				if(strName!="")
+				{
+					SingerName->TextSingerName->SetText(FText::FromString(strName));
+					SingerName->Blink();	
+				}
+				else
+				{
+					SingerName->TextSingerName->SetText(FText::FromString("EVERYBODY SING"));
+				}
+			}
+		}
+		// else if (strEventName == "PostResult")
+		// {
+
+		// 	TArray<TSharedPtr<FJsonValue>> objArray = JsonObject->GetArrayField("values");
+
+		// 	// FVector getLocation = GetActorLocation();
+		// 	// getLocation.Z=0;
+		// 	// SetActorLocation(getLocation);
+
+		// 	// int intTop = JsonObject->GetIntegerField("top");
+		// 	// int intSize = JsonObject->GetIntegerField("size");
+		// 	// int intSpacing = JsonObject->GetIntegerField("spacing");
+		// 	// LineFinishParent->SetTopAndSizeAndSpacing(intTop, intSize,  intSpacing);
+		// 	for (int32 i = 0; i < objArray.Num(); i++)
+		// 	{
+
+		// 		auto obj = objArray[i]->AsObject();
+		// 		FString question = obj->GetStringField("Item1");
+		// 		FString answer = obj->GetStringField("Item2");
+		// 		float answerLeft = obj->GetNumberField("Item3");
+		// 		FString isCorrect = obj->GetStringField("Item4");
+
+		// 		//					 FString f=FString::SanitizeFloat(answerLeft);
+
+		// 		//FString strLeft=obj->GetStringField("Item3");
+		// 		//LineFinishParent->SetPaul(strLeft);
+		// 		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red,strLeft);
+		// 		bool boolIsCorrect = (isCorrect == "true" ? true : false);
+		// 		//,
+
+		// 		LineFinishParent->fnSetGuide(question, answer, answerLeft, boolIsCorrect, i);
+		// 		//LineFinishParent->fnSetFinishLine(question, answer);
+		// 	}
+
+		// 	for (int32 i = objArray.Num(); i < 100; i++)
+		// 	{
+			
+		// 		LineFinishParent->fnSetGuide("", "", 0, true, i);
+		// 	}
+
+		// 	LineFinishParent->HideLines();
+		// }
+		// else if (strEventName == "ShowResult")
+		// {
+		// 	LineFinishParent->ShowLines();
+		// }
+		// else if (strEventName == "HideResult")
+		// {
+
+		// 	// PlaneBlur1->SetRelativeLocation(FVector(-120.0, fBlurLeft1, -5000.0f));
+		// 	// PlaneBlur2->SetRelativeLocation(FVector(330.0f, fBlurLeft2, -5000.0f));
+		// 	LineFinishParent->HideLines();
+		// 	// FVector thisLocation = LineFinishParent->GetActorLocation();
+
+		// 	// thisLocation.Z=-5000;
+
+		// 	// LineFinishParent->SetActorLocation(FVector(-120.0, -5000.0f, -5000.0f));
+
+		// 	//SetActorLocation(thisLocation);
+		// 	//GEngine->AddOnScreenDebugMessage(1, 2000.0f, FColor::Green, TEXT("SET LYRICS"));
+		// }
+		// else if (strEventName == "ResultTopAndSpacing")
+		// {
+		// 	int intTop = JsonObject->GetIntegerField("top");
+		// 	int intSize = JsonObject->GetIntegerField("size");
+		// 	int intSpacing = JsonObject->GetIntegerField("spacing");
+		// 	LineFinishParent->SetTopAndSizeAndSpacing(intTop, intSize, intSpacing);
+		// }
+		// else if (strEventName == "ResultSize")
+		// {
+		// 	int intSize = JsonObject->GetIntegerField("value");
+		// 	LineFinishParent->SetSize(intSize);
+		// }
+		// else if (strEventName == "AnimateResult")
+		// {
+		// 	int intTop = JsonObject->GetIntegerField("top");
+		// 	int intSize = JsonObject->GetIntegerField("size");
+		// 	int intSpacing = JsonObject->GetIntegerField("spacing");
+
+		// 	LineFinishParent->SetTopAndSizeAndSpacing(intTop, intSize, intSpacing);
+		// 	LineFinishParent->StartAnimateFinishResult();
+		// }
+		else if (strEventName == "ShowTitle")
+		{
+			FString title = JsonObject->GetStringField("song");
+			FString artist = JsonObject->GetStringField("artist");
+
+			TitleSingerUse->SetLyricsTitle(title, artist);
+		}
+		else if (strEventName == "HideTitle")
+		{
+			TitleSingerUse->HideTitle();
+		}
+		else if (strEventName == "Jackpot")
+		{
+			UGameplayStatics::OpenLevel(this, "JackpotMap");
+		}
+		else if (strEventName == "Humming")
+		{
+			UGameplayStatics::OpenLevel(this, "HummingMap");
+		}
+		// else if(strEventName==1)
+		// {
+		// 	float floatLineStart = -2000.f;
+		// 	if(strEventName==1 && arrLineActor.Num()>0)
+		// 	{
+		// 		for (int32 i = 0; i < arrLineActor.Num(); i++)
+		// 		{
+		// 			arrLineActor[i]->SetVerticalTop(floatLineStart);
+		// 			floatLineStart+=350.f;
+		// 		}
+		// 		return;
+		// 	}
+
+		// 	//GEngine->AddOnScreenDebugMessage(1, 2000.0f, FColor::Green, TEXT("SET LYRICS"));
+
+		// 	//INTROS
+		// 	TArray<TSharedPtr<FJsonValue>> objArray = JsonObject->GetArrayField("intro");
+
+		// 	for (int32 i = 0; i < objArray.Num(); i++)
+		// 	{
+
+		// 		const FVector LineLocation = FVector(floatLineStart, 0.f , 0.f);// + GetActorLocation();
+		// 		floatLineStart+=350.f;
+
+		// 		ALineActor* tmpLine = GetWorld()->SpawnActor<ALineActor>(LineLocation,FRotator(0.0f, 0.0f, 0.0f));
+		// 		tmpLine->SetValue(objArray[i]->AsString(), InitFontMaterial);
+
+		// 		tmpLine->SetVerticalTop(floatLineStart);
+
+		// 		//haha->Destroy();
+
+		// 		arrLineActor.Add(tmpLine);
+
+		// 	}
+
+		// 	//floatLineStart
+		// 	//BLANKS
+		// 	TArray<TSharedPtr<FJsonValue>> objArrayBlanks = JsonObject->GetArrayField("blanks");
+
+		// 	//FString fff = FString::FromInt(objArrayBlanks.Num());//FString::Printf(TEXT("%s"),FString::FromInt(objArrayBlanks.Num()));
+
+		// 	for (int32 i = 0; i < objArrayBlanks.Num(); i++)
+		// 	{
+
+		// 		// FString name = objArrayBlanks[i]->AsString();
+
+		// 		// TSharedPtr<FJsonValue> value = objArrayBlanks[i];
+		// 		// FString json = value->AsString();
+		// 	 	// FString sdfsdf = json.Mid(1,2);
+
+		// 		auto obj = objArrayBlanks[i]->AsObject();
+		// 		TSharedPtr<FJsonObject> Item1 = obj->GetObjectField("Item1");
+		// 		FString question1 = Item1->GetStringField("question");
+		// 		FString answer1 = Item1->GetStringField("answer");
+		// 		FString blank1 = Item1->GetStringField("blank");
+		// 		float blurleft1 = Item1->GetNumberField("blurleft");
+		// 		float blurwidth1 = Item1->GetNumberField("blurwidth");
+
+		// 		TSharedPtr<FJsonObject> Item2 = obj->GetObjectField("Item2");
+		// 		FString question2 = Item2->GetStringField("question");
+		// 		FString answer2 = Item2->GetStringField("answer");
+		// 		FString blank2 = Item2->GetStringField("blank");
+		// 		float blurleft2 = Item1->GetNumberField("blurleft");
+		// 		float blurwidth2 = Item1->GetNumberField("blurwidth");
+		// 		//GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Green, serverName1);
+
+		// 		const FVector LineLocation = FVector(0.f, 0.f , 0.f);// + GetActorLocation();
+		// 	//	floatLineStart+=350.f;
+
+		// 		ALineActorAnswer* tmpLine = GetWorld()->SpawnActor<ALineActorAnswer>(LineLocation,FRotator(0.0f, 0.0f, 0.0f));
+		// 		tmpLine->Init(BaseMaterial, GreenMaterial, YellowMaterial, BlankMaterial, RedMaterial,
+		// 		BlurGlowMaterial, BaseBlurMaterial, blur);
+		// 		tmpLine->SetValue(question1, answer1, blank1, question2, answer2, blank2, blurleft1,
+		// 			 blurleft2, blurwidth1, blurwidth2, blur, InitFontMaterial);
+		// 		//tmpLine->SetVerticalTop(floatLineStart);
+		// 		tmpLine->hide();
+		// 		arrLineActorBlanks.Add(tmpLine);
+
+		// 		//haha->Destroy();
+
+		// 	}
+
+		// }
+		else if (strEventName == "up")
+		{
+			//GEngine->AddOnScreenDebugMessage(2, 2000.0f, FColor::Green, TEXT("UP1"));
+			intUpOrDown = 1;
+		}
+		else if (strEventName == "down")
+		{
+			//GEngine->AddOnScreenDebugMessage(2, 2000.0f, FColor::Green, TEXT("DOWN1"));
+			intUpOrDown = 2;
+		}
+		else if (strEventName == "up")
+		{
+			// if(arrLineActorBlanks.Num()==0) return;
+
+			// int idIndex=JsonObject->GetIntegerField("idIndex");
+			// int trigger=JsonObject->GetIntegerField("trigger");
+
+			// if(trigger==0)
+			// {
+			// 	if(idIndex>0)
+			// 	{
+			// 		arrLineActorBlanks[idIndex-1]->hide();
+			// 	}
+
+			// 	FString ff=FString::FromInt(idIndex);
+			// 	GEngine->AddOnScreenDebugMessage(2, 2000.0f, FColor::Green, ff);
+			// 	arrLineActorBlanks[idIndex]->show();
+			// }
+			// else if(trigger==1)
+			// {
+			// 	arrLineActorBlanks[idIndex]->right(GreenMaterial, YellowMaterial, BlankMaterial);
+			// }
+			// else if(trigger==2)
+			// {
+			// 	arrLineActorBlanks[idIndex]->wrong(RedMaterial, YellowMaterial, BlankMaterial);
+			// }
+		}
+		else if (strEventName == "final") //show final output
+		{
+			// float floatTop=JsonObject->GetNumberField("top");
+			// float floatLineStart = floatTop;
+			// for(int i=0; i<=arrLineActorBlanks.Num()-1;++i)
+			// {
+			// 	arrLineActorBlanks[i]->SetVerticalTopFinal(floatLineStart, BlankMaterial, RedMaterial, YellowMaterial);
+			// 	// if(!arrLineActorBlanks[i]->fStrHasTwoLines())
+			// 	//     floatLineStart+=350;
+			// 	// else
+			// 	//     floatLineStart+=650;
+			// }
+		}
+		else if (strEventName == "clear") //hide all
+		{
+			// for(int i=0; i<=arrLineActorBlanks.Num()-1;++i)
+			// {
+			// 	arrLineActorBlanks[i]->hide();
+			// }
+
+			// for(int i=0; i<=arrLineActor.Num()-1;++i)
+			// {
+			// 	arrLineActor[i]->hide();
+			// }
+		}
+		else if (strEventName == "scroll") //scroll up or down
+		{
+			float floatScroll = JsonObject->GetNumberField("scroll");
+			for (int i = 0; i <= arrLineActor.Num() - 1; ++i)
+			{
+				arrLineActor[i]->setScroll(floatScroll);
+			}
+		}
+		else if (strEventName == "reset") // reset
+		{
+			for (int i = 0; i <= arrLineActor.Num() - 1; ++i)
+			{
+				arrLineActor[i]->Destroy();
+			}
+
+			arrLineActor.Empty();
+
+			// for(int i=0; i<=arrLineActorBlanks.Num()-1;++i)
+			// {
+			// 	arrLineActorBlanks[i]->Destroy();
+			// 	//arrLineActorBlanks.Pop(true);
+			// }
+
+			// arrLineActorBlanks.Empty();
+		}
+		else if(strEventName == "BlankActor")
+		{
+			UGameplayStatics::OpenLevel(this, "PuzzleExampleMap", false);
+		}
+		else if (strEventName == "ImageActor")
+		{
+			UGameplayStatics::OpenLevel(this, "PuzzleExampleMapLevel2");
+		}
+		else if (strEventName == "WordCloud")
+		{
+			UGameplayStatics::OpenLevel(this, "WordCloudMap");
+		}
+		else if (strEventName == "MultipleChoice")
+		{
+			UGameplayStatics::OpenLevel(this, "MultipleChoiceMap");
+		}
+		// else if(strEventName==2)
+		// {
+		// 	for(int i=0; i<=arrLineActor.Num();++i)
+		// 	{
+		// 		arrLineActor[i]->Destroy();
+		// 	}
+		// }
+	}
+	boolHasPassed = false;
+}
 
 void ASingProjectBlockGrid::OnResponseReceived(FHttpRequestPtr RequestP, FHttpResponsePtr Response, bool bWasSuccessful)
 {
@@ -235,11 +845,12 @@ void ASingProjectBlockGrid::OnResponseReceived(FHttpRequestPtr RequestP, FHttpRe
 		boolHasPassed = false;
 		return;
 	}
-		
+	
 
 	
 	strHttpContent = tmpHttp;
 	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::White, strHttpContent);
+	
 	//Create a reader pointer to read the json data
 	TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(strHttpContent);
 	//FString ff1= Response->GetContentAsString();
@@ -339,6 +950,43 @@ void ASingProjectBlockGrid::OnResponseReceived(FHttpRequestPtr RequestP, FHttpRe
 			answerPosition2 = Item2->GetNumberField("answerPosition");
 			blankPosition2 = Item2->GetNumberField("blankPosition");
 		
+			
+			 		FString f1=FString::FromInt(answerPosition1);
+			 GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, f1);
+
+			 FString f2=FString::FromInt(answerPosition2);
+			// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, f2);
+
+			 FString f3=FString::FromInt(blankPosition1);
+			 GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, f3);
+
+			 FString f4=FString::FromInt(blankPosition2);
+			 GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, f4);
+
+
+			// FString f5=FString::FromInt(hideAnswer);
+			// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, f5);
+
+			// FString f6=FString::FromInt(gametypeInt);
+			// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, f6);
+
+			// FString f7=FString::FromInt(gametypeInt);
+			// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, f7);
+
+			// strQuestion1 = Item1->GetStringField("question");
+			// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, strQuestion1);
+
+			// strAnswer1 = Item1->GetStringField("answer");
+
+			// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, strAnswer1);
+			// strAnswerH1 = Item1->GetStringField("answerH");
+
+			// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, strAnswerH1);
+			// strUnderline1 = Item1->GetStringField("blank");
+
+			// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, strUnderline1);
+
+
 			if (hideAnswer == 1)
 			{
 				gameType = "hideAnswer";
@@ -377,6 +1025,10 @@ void ASingProjectBlockGrid::OnResponseReceived(FHttpRequestPtr RequestP, FHttpRe
 				boolAnswerIsShown = false;
 				
 				int index = JsonObject->GetIntegerField("index");
+
+			// 	FString f8=FString::FromInt(index);
+			// GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, f8);
+
 				ALineActorAnswerIn->intIndex = index;
 				//FString ss = FString::FromInt(index);
 

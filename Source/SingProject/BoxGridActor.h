@@ -53,6 +53,9 @@ public:
 	// Sets default values for this actor's properties
 	ABoxGridActor();
 
+	UFUNCTION(BlueprintCallable, Category = VaRestResponse)
+	void VaRestResponse(FString VaRestValue);
+
 	template<typename T>
 	void FindAllActors(UWorld* World, TArray<T*>& Out);
 

@@ -28,6 +28,13 @@ AJackpotMain::AJackpotMain()
 
 }
 
+
+
+void AJackpotMain::VaRestResponse(FString VaRestValue)
+{
+
+}
+
 // Called when the game starts or when spawned
 void AJackpotMain::BeginPlay()
 {
