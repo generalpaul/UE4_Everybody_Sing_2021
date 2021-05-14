@@ -26,3 +26,4 @@
 *.tmp
 *.exe
 Saved/StagedBuilds/WindowsNoEditor/SingProject/Content/Paks/SingProject-WindowsNoEditor.pak
+*.pak

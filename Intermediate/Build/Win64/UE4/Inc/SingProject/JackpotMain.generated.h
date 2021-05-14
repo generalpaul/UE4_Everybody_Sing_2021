@@ -17,13 +17,15 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define UE4_Everybody_Sing_2021_Source_SingProject_Jackpot_JackpotMain_h_21_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(execPassValue); \
-	DECLARE_FUNCTION(execIntroFinishMain);
+	DECLARE_FUNCTION(execIntroFinishMain); \
+	DECLARE_FUNCTION(execVaRestResponse);
 
 
 #define UE4_Everybody_Sing_2021_Source_SingProject_Jackpot_JackpotMain_h_21_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execPassValue); \
-	DECLARE_FUNCTION(execIntroFinishMain);
+	DECLARE_FUNCTION(execIntroFinishMain); \
+	DECLARE_FUNCTION(execVaRestResponse);
 
 
 #define UE4_Everybody_Sing_2021_Source_SingProject_Jackpot_JackpotMain_h_21_EVENT_PARMS

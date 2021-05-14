@@ -421,7 +421,7 @@ void ASingProjectBlockGrid::VaRestResponse(FString VaRestValue)
 				FString ss = FString::FromInt(index);
 
  				FString strName = Item1->GetStringField("strName");
- 							 	FString f8=FString::FromInt(index);
+ 							 //	FString f8=FString::FromInt(index);
  		
 				if(strName!="")
 				{
